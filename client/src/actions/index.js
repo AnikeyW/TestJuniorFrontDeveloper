@@ -1,10 +1,11 @@
 import axios from 'axios';
 import * as types from '../constants/actions';
 
-export const getAuctions = () => async (dispatch) => {
+export const getAuctions = (searchQuery) => async (dispatch) => {
   try {
     dispatch({ type: types.SET_IS_LOADING_AUCTIONS_LIST, payload: true });
-    const response = await axios.get(`${process.env.CONFIG.API_BASEPATH}/filterAuctions`);
+    const url = `${process.env.CONFIG.API_BASEPATH}/filterAuctions${searchQuery ? `?search=${searchQuery}` : ''}`;
+    const response = await axios.get(url);
     dispatch({ type: types.GET_ALL_AUCTIONS, payload: response.data.auctions });
     dispatch({ type: types.SET_IS_LOADING_AUCTIONS_LIST, payload: false });
   } catch (e) {
