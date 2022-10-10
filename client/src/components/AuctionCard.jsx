@@ -1,8 +1,8 @@
 import { Box, Grid, Typography } from '@mui/material';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-function AuctionCard({ auction }) {
+const AuctionCard = React.memo(({ auction }) => {
   const navigate = useNavigate();
   const [endTime, setEndTime] = useState('');
   function getEndTime() {
@@ -59,6 +59,6 @@ function AuctionCard({ auction }) {
       </Box>
     </Grid>
   );
-}
+});
 
 export default AuctionCard;
