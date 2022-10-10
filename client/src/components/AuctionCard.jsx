@@ -11,8 +11,8 @@ function AuctionCard({ auction }) {
       return;
     }
     const d = new Date(auction.finishTime - Date.now());
-    const min = d.getMinutes();
-    const sec = d.getSeconds();
+    const min = d.getMinutes().toString().padStart(2, '0');
+    const sec = d.getSeconds().toString().padStart(2, '0');
     setEndTime(`${min}:${sec}`);
   }
   useEffect(() => {
