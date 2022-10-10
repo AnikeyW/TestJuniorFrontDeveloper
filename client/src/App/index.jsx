@@ -4,7 +4,7 @@ import {
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { getAuctions } from '../actions';
+import { getAuctions, getAuctionsPooling } from '../actions';
 import AuctionsList from '../components/AuctionsList';
 import CarInfo from '../components/CarInfo';
 
@@ -12,6 +12,10 @@ function App() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getAuctions());
+    const poolingInterval = setInterval(() => {
+      dispatch(getAuctionsPooling());
+    }, process.env.CONFIG.POLLING_INTERVAL * 1000);
+    return () => clearInterval(poolingInterval);
   }, []);
   return (
     <Router>
