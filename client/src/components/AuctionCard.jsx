@@ -1,27 +1,20 @@
 import { Box, Grid, Typography } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import getTimeToEnd from '../utils/getTimeToEnd';
 
 const AuctionCard = React.memo(({ auction }) => {
   const navigate = useNavigate();
   const [endTime, setEndTime] = useState('');
-  function getEndTime() {
-    if (auction.finishTime - Date.now() <= 0) {
-      setEndTime('00:00');
-      return;
-    }
-    const d = new Date(auction.finishTime - Date.now());
-    const min = d.getMinutes().toString().padStart(2, '0');
-    const sec = d.getSeconds().toString().padStart(2, '0');
-    setEndTime(`${min}:${sec}`);
-  }
+
   useEffect(() => {
-    getEndTime();
+    setEndTime(getTimeToEnd(auction.finishTime));
     const endTimeInterval = setInterval(() => {
-      getEndTime();
+      setEndTime(getTimeToEnd(auction.finishTime));
     }, 1000);
     return () => clearInterval(endTimeInterval);
   }, [auction.finishTime]);
+
   return (
     <Grid
       item
