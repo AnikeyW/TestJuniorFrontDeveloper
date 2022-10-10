@@ -13,9 +13,10 @@ export const getAuctions = (searchQuery) => async (dispatch) => {
     console.log(e);
   }
 };
-export const getAuctionsPooling = () => async (dispatch) => {
+export const getAuctionsPooling = (searchQuery) => async (dispatch) => {
   try {
-    const response = await axios.get(`${process.env.CONFIG.API_BASEPATH}/filterAuctions`);
+    const url = `${process.env.CONFIG.API_BASEPATH}/filterAuctions${searchQuery ? `?search=${searchQuery}` : ''}`;
+    const response = await axios.get(url);
     dispatch({ type: types.GET_ALL_AUCTIONS, payload: response.data.auctions });
   } catch (e) {
     console.log(e);
