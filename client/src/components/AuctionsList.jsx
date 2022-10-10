@@ -6,8 +6,9 @@ import SearchQuery from './SearchQuery';
 function AuctionsList() {
   const auctions = useSelector((state) => state.auctions.auctionsList);
   const isLoadingAuctionsList = useSelector((state) => state.auctions.isLoadingAuctionsList);
+
   return (
-    <Box>
+    <Box style={{ paddingBottom: '15px' }}>
       <SearchQuery />
       <Grid container spacing={2} height="100%">
         {auctions.length !== 0 ? auctions.map((auction) => (
