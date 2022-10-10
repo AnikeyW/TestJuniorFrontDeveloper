@@ -13,10 +13,13 @@ function CarInfo() {
   const auctions = useSelector((state) => state.auctions.auctionsList);
   const isLoadingCarInfo = useSelector((state) => state.cars.isLoadingCarInfo);
   const carInfo = useSelector((state) => state.cars.carInfo);
+
   useEffect(() => {
     dispatch(getCarInfo(params.id));
   }, []);
+
   const auction = auctions.find((car) => +car.id === +params.id);
+
   return (
     <Box>
       <Button onClick={() => navigate('/')}>Назад</Button>

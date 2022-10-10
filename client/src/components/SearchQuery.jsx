@@ -7,10 +7,12 @@ function SearchQuery() {
   const dispatch = useDispatch();
   const [searchQuery, setSearchQuery] = useState('');
   const isLoadingAuctionsList = useSelector((state) => state.auctions.isLoadingAuctionsList);
+
   const searchQueryHandler = (e) => {
     setSearchQuery(e.target.value);
     dispatch(getAuctions(e.target.value));
   };
+
   return (
     <Box display="flex">
       <TextField
