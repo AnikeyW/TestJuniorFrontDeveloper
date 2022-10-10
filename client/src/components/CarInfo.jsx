@@ -1,7 +1,9 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Box, Button, Typography } from '@mui/material';
+import {
+  Box, Button, CircularProgress, Typography,
+} from '@mui/material';
 import { getCarInfo } from '../actions';
 
 function CarInfo() {
@@ -18,7 +20,16 @@ function CarInfo() {
   return (
     <Box>
       <Button onClick={() => navigate('/')}>Назад</Button>
-      {isLoadingCarInfo && <div>Loading...</div>}
+      {isLoadingCarInfo && (
+        <Box sx={{
+          width: '100%',
+          display: 'flex',
+          justifyContent: 'center',
+        }}
+        >
+          <CircularProgress />
+        </Box>
+      )}
       {!isLoadingCarInfo && carInfo && (
         <Box>
           <Typography variant="h5">
