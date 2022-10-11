@@ -5,7 +5,7 @@ const initialState = {
   isLoadingCarInfo: false,
 };
 
-const cars = (state = initialState, action) => {
+const cars = (state = initialState, action = {}) => {
   switch (action.type) {
     case types.SET_CAR_INFO: {
       return { ...state, carInfo: action.payload };

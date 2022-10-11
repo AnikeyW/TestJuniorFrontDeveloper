@@ -1,6 +1,7 @@
 import { Box, Grid, Typography } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import getTimeToEnd from '../utils/getTimeToEnd';
 
 const AuctionCard = React.memo(({ auction }) => {
@@ -55,3 +56,13 @@ const AuctionCard = React.memo(({ auction }) => {
 });
 
 export default AuctionCard;
+
+AuctionCard.propTypes = {
+  auction: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
+    imgUrl: PropTypes.string.isRequired,
+    finishTime: PropTypes.number.isRequired,
+    bid: PropTypes.number.isRequired,
+  }).isRequired,
+};

@@ -6,9 +6,7 @@
     "react/jsx-uses-react": "off",
     "react/react-in-jsx-scope": "off",
     "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": "warn",
-    "default-param-last": 0,
-    "react/prop-types": 0
+    "react-hooks/exhaustive-deps": "warn"
   },
   "plugins": [
     "react",
@@ -20,5 +18,5 @@
     "window": true,
     "document": true
   },
-  "parser": "@babel/eslint-parser",
+  "parser": "@babel/eslint-parser"
 }
